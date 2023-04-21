@@ -1,12 +1,11 @@
-import "../styles/Home.module.css";
 import { Layout } from "@/components/Layout";
 
-export default function Home() {
+export const Sample = () => {
   return (
     <>
       <Layout>
-        <div>kokoko</div>
+        <div>detail</div>
       </Layout>
     </>
   );
-}
+};

@@ -1,12 +1,11 @@
-import "../styles/Home.module.css";
 import { Layout } from "@/components/Layout";
 
-export default function Home() {
+export const CreatePage = () => {
   return (
     <>
       <Layout>
-        <div>kokoko</div>
+        <div>create</div>
       </Layout>
     </>
   );
-}
+};
