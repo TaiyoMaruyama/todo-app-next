@@ -1,10 +1,11 @@
+import { Edit } from "@/components/Edit";
 import { Layout } from "@/components/Layout";
 
 const EditPage = () => {
   return (
     <>
       <Layout>
-        <div>edit</div>
+        <Edit />
       </Layout>
     </>
   );

@@ -58,8 +58,8 @@ export const TodoList: React.FC = () => {
                 </td>
                 <td className="todo-priority">{todo.priority}</td>
                 <td className="todo-buttons">
-                  <ListEditButton />
-                  <ListDeleteButton />
+                  <ListEditButton selectedId={todo.id} />
+                  <ListDeleteButton selectedId={todo.id} />
                 </td>
               </tr>
             ))
