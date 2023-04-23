@@ -1,11 +1,14 @@
 import { Layout } from "@/components/Layout";
+import { Create } from "@/components/Create";
 
-export const CreatePage = () => {
+const CreatePage = () => {
   return (
     <>
       <Layout>
-        <div>create</div>
+        <Create />
       </Layout>
     </>
   );
 };
+
+export default CreatePage;

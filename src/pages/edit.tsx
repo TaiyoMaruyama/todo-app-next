@@ -1,6 +1,6 @@
 import { Layout } from "@/components/Layout";
 
-export const EditPage = () => {
+const EditPage = () => {
   return (
     <>
       <Layout>
@@ -9,3 +9,5 @@ export const EditPage = () => {
     </>
   );
 };
+
+export default EditPage;

@@ -1,6 +1,6 @@
 import { Layout } from "@/components/Layout";
 
-export const Sample = () => {
+const DetailPage: React.FC = () => {
   return (
     <>
       <Layout>
@@ -9,3 +9,5 @@ export const Sample = () => {
     </>
   );
 };
+
+export default DetailPage;
