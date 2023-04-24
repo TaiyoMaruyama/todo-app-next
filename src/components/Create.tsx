@@ -3,7 +3,7 @@ import { addDoc, collection } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { useRouter } from "next/router";
 import { BackButton } from "./commomParts/BackButton";
-import { CreateButton } from "./commomParts/CreateButton";
+import { CreateButton } from "./commomParts/createButton";
 
 export const Create = () => {
   const router = useRouter();

@@ -55,7 +55,7 @@ export const TodoList: React.FC = () => {
             <th className="list-buttons">SELECT ACTION</th>
           </tr>
           {(!searchWord ? todos : filteredTodos).map((todo: Todo) => (
-            <tr key={todo.id}>
+            <tr key={todo.id} className="todo-tr">
               <td className="todo-title" onClick={() => handleDetail(todo.id)}>
                 {todo.title}
               </td>
