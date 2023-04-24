@@ -75,3 +75,16 @@
   display: flex;
   justify-content: space-between;
 }
+
+.detail-page-title,
+.detail-page-detail{
+  background-color: rgb(221, 221, 221);
+  width: 100%;
+  padding: 10px 20px;
+  margin: 20px 0;
+  border-radius: 10px;
+}
+
+.detail-page-detail{
+  height: 360px;
+}

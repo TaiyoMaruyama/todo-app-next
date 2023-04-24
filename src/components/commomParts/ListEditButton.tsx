@@ -8,9 +8,10 @@ export const ListEditButton = ({ selectedId }: { selectedId: string }) => {
   const handleEdit = async () => {
     const docRef = doc(db, "todos", selectedId);
     const docSnap = await getDoc(docRef);
+    const queryData = { ...docSnap.data(), id: selectedId };
     router.push({
       pathname: "/edit",
-      query: docSnap.data(),
+      query: queryData,
     });
   };
   return (

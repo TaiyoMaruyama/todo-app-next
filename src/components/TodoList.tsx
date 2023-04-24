@@ -2,25 +2,14 @@ import { ListEditButton } from "@/components/commomParts/ListEditButton";
 import { ListDeleteButton } from "@/components/commomParts/ListDeleteButton";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { collection, onSnapshot } from "firebase/firestore";
+import { collection, doc, getDoc, onSnapshot } from "firebase/firestore";
 import { db } from "@/lib/firebase";
-import { CreateButton } from "./commomParts/createButton";
-
-export type Todo = {
-  id: string;
-  title: string;
-  detail: string;
-  priority: string;
-  create: string;
-};
+import { CreateButton } from "./commomParts/CreateButton";
+import { Todo } from "./commomParts/TodoType";
 
 export const TodoList: React.FC = () => {
   const router = useRouter();
   const [todos, setTodos] = useState<Todo[]>([]);
-
-  const handleDetail = () => {
-    router.push("/detail");
-  };
 
   useEffect(() => {
     onSnapshot(collection(db, "todos"), (snapshot) => {
@@ -36,11 +25,26 @@ export const TodoList: React.FC = () => {
         })
       );
     });
-  }, [setTodos]);
+  }, []);
+
+  const handleDetail = async (selectedId: string) => {
+    const docRef = doc(db, "todos", selectedId);
+    const docSnap = await getDoc(docRef);
+    const queryData = { ...docSnap.data(), id: selectedId };
+    router.push({
+      pathname: "/detail",
+      query: queryData,
+    });
+  };
 
   return (
     <>
-      <CreateButton />
+      <div className="list-header">
+        <div className="filter-frame">
+          <input type="text" />
+        </div>
+        <CreateButton />
+      </div>
       <table className="todo-list-table">
         <tbody>
           <tr>
@@ -53,7 +57,10 @@ export const TodoList: React.FC = () => {
           ) : (
             todos.map((todo: Todo) => (
               <tr key={todo.id}>
-                <td className="todo-title" onClick={handleDetail}>
+                <td
+                  className="todo-title"
+                  onClick={() => handleDetail(todo.id)}
+                >
                   {todo.title}
                 </td>
                 <td className="todo-priority">{todo.priority}</td>

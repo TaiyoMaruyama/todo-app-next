@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { CreateButton } from "./commomParts/createButton";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { useRouter } from "next/router";
+import { BackButton } from "./commomParts/BackButton";
+import { CreateButton } from "./commomParts/CreateButton";
 
 export const Create = () => {
   const router = useRouter();
@@ -10,10 +11,10 @@ export const Create = () => {
   const [newDetail, setNewDetail] = useState("");
   const [newPriority, setNewPriority] = useState("");
 
-  const newtitleChange = (e: ReactEvent<HTMLInputElement>) => {
+  const newtitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewTitle(e.target.value);
   };
-  const newDetailChange = (e: ReactEvent<HTMLTextAreaElement>) => {
+  const newDetailChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setNewDetail(e.target.value);
   };
   const newPriorityChange = (priority: string) => {
@@ -34,6 +35,7 @@ export const Create = () => {
 
   return (
     <div className="create-frame">
+      <BackButton></BackButton>
       <input
         type="text"
         className="create-input"

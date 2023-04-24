@@ -1,14 +1,15 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { CreateButton } from "./commomParts/createButton";
-import { doc, query, updateDoc } from "firebase/firestore";
+import { doc, updateDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
-import { UpdateButton } from "./commomParts/updateButton";
+import { UpdateButton } from "./commomParts/UpdateButton";
+import { BackButton } from "./commomParts/BackButton";
 
 export const Edit: React.FC = () => {
   const router = useRouter();
   const getData = router.query;
   const [todo, setTodo] = useState(getData);
+  console.log(getData);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -37,6 +38,7 @@ export const Edit: React.FC = () => {
 
   return (
     <>
+      <BackButton />
       <div className="create-frame">
         <input
           type="text"
@@ -59,8 +61,8 @@ export const Edit: React.FC = () => {
               <label key={priority} className="radio">
                 <input
                   type="radio"
-                  name="selectedPriority"
-                  value={todo.priority}
+                  name="priority"
+                  value={priority}
                   checked={priority == todo.priority}
                   onChange={handlePriorityChange}
                 />
