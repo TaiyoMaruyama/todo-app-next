@@ -1,8 +1,10 @@
 import { Button } from "@mui/material";
 import { useState } from "react";
-import { signUp } from "../pages/states/authFunction";
+import { signUp } from "@/pages/states/useAuth";
+import { useRouter } from "next/router";
 
 const SignUpPage = () => {
+  const router = useRouter();
   const [mail, setMail] = useState("");
   const [password, setPaddword] = useState("");
 
@@ -16,6 +18,7 @@ const SignUpPage = () => {
 
   const handleLogin = () => {
     signUp(mail, password);
+    router.push("/");
   };
 
   return (
@@ -44,7 +47,7 @@ const SignUpPage = () => {
           </Button>
         </div>
         <h4>
-          <a href="/signup">ログインはこちらから</a>
+          <a href="/signin">ログインはこちらから</a>
         </h4>
       </div>
     </>

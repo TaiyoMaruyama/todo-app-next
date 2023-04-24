@@ -4,12 +4,12 @@ import { useAuth } from "./states/useAuth";
 import SignInPage from "@/components/SignInPage";
 import { TodoList } from "@/components/TodoList";
 
-const Home = () => {
+const Home: React.FC = () => {
   const user = useAuth();
 
   return (
     <>
-      <Layout>{!user ? <TodoList /> : <SignInPage />} </Layout>
+      <Layout>{user.uid === "" ? <SignInPage /> : <TodoList />}</Layout>
     </>
   );
 };

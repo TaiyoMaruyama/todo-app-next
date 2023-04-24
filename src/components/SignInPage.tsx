@@ -1,8 +1,10 @@
 import { Button } from "@mui/material";
 import { useState } from "react";
-import { signIn } from "../pages/states/authFunction";
+import { signIn } from "@/pages/states/useAuth";
+import { useRouter } from "next/router";
 
 const SignInPage = () => {
+  const router = useRouter();
   const [mail, setMail] = useState("");
   const [password, setPaddword] = useState("");
 
@@ -16,6 +18,7 @@ const SignInPage = () => {
 
   const handleLogin = () => {
     signIn(mail, password);
+    router.push("/");
   };
 
   return (

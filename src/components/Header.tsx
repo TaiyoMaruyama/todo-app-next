@@ -1,7 +1,17 @@
 import Link from "next/link";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { useRecoilValue } from "recoil";
+import { signInUserState } from "@/pages/states/authState";
+import { signOut } from "firebase/auth";
+import { auth } from "@/lib/firebase";
+import { Button } from "@mui/material";
 
 export const Header = () => {
+  const userInfo = useRecoilValue(signInUserState);
+
+  const handleLogout = () => {
+    signOut(auth);
+  };
+
   return (
     <>
       <header className="header">
@@ -12,8 +22,12 @@ export const Header = () => {
             </Link>
           </div>
           <div className="header-right">
-            <AccountCircleIcon />
-            <p>testtest123@gmail.com</p>
+            <p className="user-email">{userInfo.uid}</p>
+            {userInfo.uid !== "" && (
+              <Button variant="outlined" onClick={handleLogout}>
+                ログアウト
+              </Button>
+            )}
           </div>
         </div>
       </header>

@@ -1,9 +1,12 @@
+import { Layout } from "@/components/Layout";
 import SignUpPage from "@/components/SignUpPage";
 
 const SignUp = () => {
   return (
     <>
-      <SignUpPage />
+      <Layout>
+        <SignUpPage />
+      </Layout>
     </>
   );
 };
