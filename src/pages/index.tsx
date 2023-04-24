@@ -1,13 +1,17 @@
 import "../styles/Home.module.css";
 import { Layout } from "@/components/Layout";
-import SoignInState from "./signupState";
+import { useAuth } from "./states/useAuth";
+import SignInPage from "@/components/SignInPage";
+import { TodoList } from "@/components/TodoList";
 
-export default function Home() {
+const Home = () => {
+  const user = useAuth();
+
   return (
     <>
-      <Layout>
-        <SoignInState />
-      </Layout>
+      <Layout>{!user ? <TodoList /> : <SignInPage />} </Layout>
     </>
   );
-}
+};
+
+export default Home;

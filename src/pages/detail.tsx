@@ -5,7 +5,7 @@ const DetailPage: React.FC = () => {
   return (
     <>
       <Layout>
-        <Detail></Detail>
+        <Detail />
       </Layout>
     </>
   );
