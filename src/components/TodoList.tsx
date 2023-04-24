@@ -4,12 +4,14 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { collection, doc, getDoc, onSnapshot } from "firebase/firestore";
 import { db } from "@/lib/firebase";
-import { CreateButton } from "./commomParts/CreateButton";
 import { Todo } from "./commomParts/TodoType";
+import { SearchArea } from "./commomParts/SearchArea";
 
 export const TodoList: React.FC = () => {
   const router = useRouter();
   const [todos, setTodos] = useState<Todo[]>([]);
+  const [filteredTodos, setFilteredTodos] = useState<Todo[]>([]);
+  const [searchWord, setSearchWord] = useState("");
 
   useEffect(() => {
     onSnapshot(collection(db, "todos"), (snapshot) => {
@@ -37,14 +39,14 @@ export const TodoList: React.FC = () => {
     });
   };
 
+  const handleSearch = (searchValue: string) => {
+    setSearchWord(searchValue);
+    setFilteredTodos(todos.filter((todo) => todo.title.includes(searchValue)));
+  };
+
   return (
     <>
-      <div className="list-header">
-        <div className="filter-frame">
-          <input type="text" />
-        </div>
-        <CreateButton />
-      </div>
+      <SearchArea handleSearch={handleSearch} />
       <table className="todo-list-table">
         <tbody>
           <tr>
@@ -52,25 +54,18 @@ export const TodoList: React.FC = () => {
             <th className="list-priority">PRIORITY</th>
             <th className="list-buttons">SELECT ACTION</th>
           </tr>
-          {!todos ? (
-            <p>Loading...</p>
-          ) : (
-            todos.map((todo: Todo) => (
-              <tr key={todo.id}>
-                <td
-                  className="todo-title"
-                  onClick={() => handleDetail(todo.id)}
-                >
-                  {todo.title}
-                </td>
-                <td className="todo-priority">{todo.priority}</td>
-                <td className="todo-buttons">
-                  <ListEditButton selectedId={todo.id} />
-                  <ListDeleteButton selectedId={todo.id} />
-                </td>
-              </tr>
-            ))
-          )}
+          {(!searchWord ? todos : filteredTodos).map((todo: Todo) => (
+            <tr key={todo.id}>
+              <td className="todo-title" onClick={() => handleDetail(todo.id)}>
+                {todo.title}
+              </td>
+              <td className="todo-priority">{todo.priority}</td>
+              <td className="todo-buttons">
+                <ListEditButton selectedId={todo.id} />
+                <ListDeleteButton selectedId={todo.id} />
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </>

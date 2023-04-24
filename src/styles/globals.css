@@ -88,3 +88,22 @@
 .detail-page-detail{
   height: 360px;
 }
+
+.list-header{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  padding-right: 100px;
+}
+
+.filter-frame {
+  align-items: center;
+}
+
+.search-input {
+  width: 360px;
+  height: 18px;
+  border-radius: 10px;
+  padding: 10px 20px;
+  margin-right: 20px;
+}
