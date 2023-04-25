@@ -24,7 +24,7 @@ const SignInPage = () => {
   return (
     <>
       <div className="signup-form">
-        <p>どうも！ログインしてください！</p>
+        <p>ようこそ! SignInしてください!</p>
         <div>
           <input
             type="text"
@@ -43,7 +43,7 @@ const SignInPage = () => {
         </div>
         <div className="signin-button">
           <Button variant="outlined" onClick={handleLogin}>
-            ログイン
+            サインイン
           </Button>
         </div>
         <h4>

@@ -25,7 +25,7 @@ export const Header = () => {
             <p className="user-email">{userInfo.uid}</p>
             {userInfo.uid !== "" && (
               <Button variant="outlined" onClick={handleLogout}>
-                ログアウト
+                サインアウト
               </Button>
             )}
           </div>
