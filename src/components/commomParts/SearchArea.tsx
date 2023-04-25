@@ -1,6 +1,6 @@
 import { useState } from "react";
 import React from "react";
-import { CreateButton } from "./CreateButton";
+import { CreateButton } from "./createButton";
 import { Button } from "@mui/material";
 
 type Props = {
@@ -29,6 +29,7 @@ export const SearchArea: React.FC<Props> = ({ handleSearch }) => {
         <div className="filter-frame">
           <input
             type="text"
+            placeholder="検索"
             value={searchValue}
             onChange={handleCahnge}
             className="search-input"

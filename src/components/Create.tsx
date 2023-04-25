@@ -35,7 +35,7 @@ export const Create = () => {
 
   return (
     <div className="create-frame">
-      <BackButton></BackButton>
+      <BackButton />
       <input
         type="text"
         className="create-input"

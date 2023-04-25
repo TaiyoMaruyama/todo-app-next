@@ -24,7 +24,7 @@ const SignUpPage = () => {
   return (
     <>
       <div className="signup-form">
-        <p>ようこそ！アカウントを作成してください！</p>
+        <p>ようこそ! アカウントを作成してください!</p>
         <div>
           <input
             type="text"
@@ -43,11 +43,11 @@ const SignUpPage = () => {
         </div>
         <div className="signin-button">
           <Button variant="outlined" onClick={handleLogin}>
-            新規作成
+            サインアップ
           </Button>
         </div>
         <h4>
-          <a href="/signin">ログインはこちらから</a>
+          <a href="/signin">サインインはこちらから</a>
         </h4>
       </div>
     </>
