@@ -23,12 +23,12 @@ const SignInPage = () => {
 
   return (
     <>
-      <div className="signup-form">
+      <div className="sign-up-form">
         <p>ようこそ! SignInしてください!</p>
         <div>
           <input
             type="text"
-            className="signin-input"
+            className="sign-in-input"
             value={mail}
             onChange={handleChangeMail}
           />
@@ -36,12 +36,12 @@ const SignInPage = () => {
         <div>
           <input
             type="password"
-            className="signin-input"
+            className="sign-in-input"
             value={password}
             onChange={handleChangePassword}
           />
         </div>
-        <div className="signin-button">
+        <div className="sign-in-button">
           <Button variant="outlined" onClick={handleLogin}>
             サインイン
           </Button>
