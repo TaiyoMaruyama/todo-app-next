@@ -1,17 +1,33 @@
 import { ListEditButton } from "@/components/commonParts/ListEditButton";
-import { ListDeleteButton } from "@/components/commonParts/ListDeleteButton";
+import { Alert, Button } from "@mui/material";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { collection, doc, getDoc, onSnapshot } from "firebase/firestore";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDoc,
+  onSnapshot,
+} from "firebase/firestore";
 import { db } from "@/lib/firebase";
-import { Todo } from "./commonParts/TodoType";
-import { SearchArea } from "./commonParts/SearchArea";
+import { SearchArea } from "./SearchArea";
+
+export type Todo = {
+  id: string;
+  title: string;
+  detail: string;
+  priority: string;
+  create: string;
+};
 
 export const TodoList: React.FC = () => {
   const router = useRouter();
   const [todos, setTodos] = useState<Todo[]>([]);
   const [filteredTodos, setFilteredTodos] = useState<Todo[]>([]);
   const [searchWord, setSearchWord] = useState("");
+  const [showDialog, setShowDialog] = useState(false);
+  const [deleteInfo, setDeleteInfo] = useState({ id: "", title: "" });
+  const [dialogState, setDialogState] = useState(false);
 
   useEffect(() => {
     onSnapshot(collection(db, "todos"), (snapshot) => {
@@ -44,6 +60,22 @@ export const TodoList: React.FC = () => {
     setFilteredTodos(todos.filter((todo) => todo.title.includes(searchValue)));
   };
 
+  const handleDelateCheck = (id: string, title: string) => {
+    setDialogState(false);
+    setShowDialog(true);
+    setDeleteInfo({ id: id, title: title });
+  };
+
+  const handleDelate = async (selectedId: string) => {
+    await deleteDoc(doc(db, "todos", selectedId));
+    setShowDialog(false);
+    setDeleteInfo({ id: "", title: "" });
+    setDialogState(true);
+    setTimeout(() => {
+      setDialogState(false);
+    }, 2000);
+  };
+
   return (
     <>
       <SearchArea handleSearch={handleSearch} />
@@ -62,12 +94,43 @@ export const TodoList: React.FC = () => {
               <td className="todo-priority">{todo.priority}</td>
               <td className="todo-buttons">
                 <ListEditButton selectedId={todo.id} />
-                <ListDeleteButton selectedId={todo.id} />
+                <Button
+                  variant="outlined"
+                  color="error"
+                  onClick={() => handleDelateCheck(todo.id, todo.title)}
+                >
+                  削除
+                </Button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+      {showDialog && (
+        <div className="dialog">
+          <div className="dialog-frame">
+            <p className="dialog-title">{deleteInfo.title}</p>
+            <p>というTODOを削除してもよろしいですか</p>
+            <div className="dialog-button-frame">
+              <Button
+                variant="outlined"
+                color="error"
+                onClick={() => handleDelate(deleteInfo.id)}
+              >
+                はい
+              </Button>
+              <Button variant="outlined" onClick={() => setShowDialog(false)}>
+                いいえ
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+      {dialogState && (
+        <div className="toast">
+          <Alert severity="success">該当のTODOを削除しました。</Alert>
+        </div>
+      )}
     </>
   );
 };
