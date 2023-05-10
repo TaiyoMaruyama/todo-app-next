@@ -6,14 +6,14 @@ import { useRouter } from "next/router";
 const SignUpPage = () => {
   const router = useRouter();
   const [mail, setMail] = useState("");
-  const [password, setPaddword] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleChangeMail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setMail(e.target.value);
   };
 
   const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPaddword(e.target.value);
+    setPassword(e.target.value);
   };
 
   const handleLogin = () => {
@@ -23,12 +23,12 @@ const SignUpPage = () => {
 
   return (
     <>
-      <div className="signup-form">
+      <div className="sign-up-form">
         <p>ようこそ! アカウントを作成してください!</p>
         <div>
           <input
             type="text"
-            className="signin-input"
+            className="sign-in-input"
             value={mail}
             onChange={handleChangeMail}
           />
@@ -36,18 +36,18 @@ const SignUpPage = () => {
         <div>
           <input
             type="password"
-            className="signin-input"
+            className="sign-in-input"
             value={password}
             onChange={handleChangePassword}
           />
         </div>
-        <div className="signin-button">
+        <div className="sign-in-button">
           <Button variant="outlined" onClick={handleLogin}>
             サインアップ
           </Button>
         </div>
         <h4>
-          <a href="/signin">サインインはこちらから</a>
+          <a href="/sign-in">サインインはこちらから</a>
         </h4>
       </div>
     </>

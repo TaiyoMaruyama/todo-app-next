@@ -1,11 +1,11 @@
-import { ListEditButton } from "@/components/commomParts/ListEditButton";
-import { ListDeleteButton } from "@/components/commomParts/ListDeleteButton";
+import { ListEditButton } from "@/components/commonParts/ListEditButton";
+import { ListDeleteButton } from "@/components/commonParts/ListDeleteButton";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { collection, doc, getDoc, onSnapshot } from "firebase/firestore";
 import { db } from "@/lib/firebase";
-import { Todo } from "./commomParts/TodoType";
-import { SearchArea } from "./commomParts/SearchArea";
+import { Todo } from "./commonParts/TodoType";
+import { SearchArea } from "./commonParts/SearchArea";
 
 export const TodoList: React.FC = () => {
   const router = useRouter();

@@ -2,8 +2,8 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
-import { UpdateButton } from "./commomParts/updateButton";
-import { BackButton } from "./commomParts/BackButton";
+import { UpdateButton } from "./commonParts/updateButton";
+import { BackButton } from "./commonParts/BackButton";
 
 export const Edit: React.FC = () => {
   const router = useRouter();

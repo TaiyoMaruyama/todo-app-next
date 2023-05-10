@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { BackButton } from "./commomParts/BackButton";
+import { BackButton } from "./commonParts/BackButton";
 
 export const Detail = () => {
   const router = useRouter();
