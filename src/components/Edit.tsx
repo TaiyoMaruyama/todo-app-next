@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
-import { UpdateButton } from "./commonParts/updateButton";
+import { Button } from "@mui/material";
 import { BackButton } from "./commonParts/BackButton";
 
 export const Edit: React.FC = () => {
@@ -34,6 +34,10 @@ export const Edit: React.FC = () => {
       await updateDoc(docRef, payload);
       router.push("/");
     }
+  };
+
+  const handleUpdate = () => {
+    router.push("/");
   };
 
   return (
@@ -72,7 +76,9 @@ export const Edit: React.FC = () => {
           </div>
 
           <div onClick={handleUpdateTodo}>
-            <UpdateButton />
+            <Button variant="outlined" onClick={handleUpdate}>
+              更新
+            </Button>{" "}
           </div>
         </div>
       </div>

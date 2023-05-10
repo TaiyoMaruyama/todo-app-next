@@ -3,7 +3,7 @@ import { addDoc, collection } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { useRouter } from "next/router";
 import { BackButton } from "./commonParts/BackButton";
-import { CreateButton } from "./commonParts/createButton";
+import { Button } from "@mui/material";
 
 export const Create = () => {
   const router = useRouter();
@@ -65,7 +65,7 @@ export const Create = () => {
         </div>
 
         <div onClick={handleCreateNewTodo}>
-          <CreateButton />
+          <Button variant="outlined">新規作成</Button>
         </div>
       </div>
     </div>

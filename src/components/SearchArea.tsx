@@ -1,6 +1,6 @@
 import { useState } from "react";
 import React from "react";
-import { CreateButton } from "./createButton";
+import { CreateButton } from "./commonParts/createButton";
 import { Button } from "@mui/material";
 
 type Props = {
@@ -10,7 +10,7 @@ type Props = {
 export const SearchArea: React.FC<Props> = ({ handleSearch }) => {
   const [searchValue, setSearchValue] = useState("");
 
-  const handleCahnge = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
   };
 
@@ -31,7 +31,7 @@ export const SearchArea: React.FC<Props> = ({ handleSearch }) => {
             type="text"
             placeholder="検索"
             value={searchValue}
-            onChange={handleCahnge}
+            onChange={handleChange}
             className="search-input"
           />
           <Button variant="outlined" onClick={handleButtonClick}>
