@@ -47,7 +47,7 @@ const SignUpPage = () => {
           </Button>
         </div>
         <h4>
-          <a href="/sign-in">サインインはこちらから</a>
+          <a href="/signin">サインインはこちらから</a>
         </h4>
       </div>
     </>
