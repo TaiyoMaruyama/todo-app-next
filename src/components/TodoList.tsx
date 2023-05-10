@@ -1,5 +1,5 @@
 import { ListEditButton } from "@/components/commonParts/ListEditButton";
-import { Alert, AlertTitle, Button } from "@mui/material";
+import { Alert, Button } from "@mui/material";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import {
@@ -10,8 +10,15 @@ import {
   onSnapshot,
 } from "firebase/firestore";
 import { db } from "@/lib/firebase";
-import { Todo } from "./commonParts/TodoType";
 import { SearchArea } from "./SearchArea";
+
+export type Todo = {
+  id: string;
+  title: string;
+  detail: string;
+  priority: string;
+  create: string;
+};
 
 export const TodoList: React.FC = () => {
   const router = useRouter();
@@ -54,6 +61,7 @@ export const TodoList: React.FC = () => {
   };
 
   const handleDelateCheck = (id: string, title: string) => {
+    setDialogState(false);
     setShowDialog(true);
     setDeleteInfo({ id: id, title: title });
   };
@@ -62,6 +70,10 @@ export const TodoList: React.FC = () => {
     await deleteDoc(doc(db, "todos", selectedId));
     setShowDialog(false);
     setDeleteInfo({ id: "", title: "" });
+    setDialogState(true);
+    setTimeout(() => {
+      setDialogState(false);
+    }, 2000);
   };
 
   return (
@@ -94,7 +106,7 @@ export const TodoList: React.FC = () => {
           ))}
         </tbody>
       </table>
-      {showDialog ? (
+      {showDialog && (
         <div className="dialog">
           <div className="dialog-frame">
             <p className="dialog-title">{deleteInfo.title}</p>
@@ -113,13 +125,10 @@ export const TodoList: React.FC = () => {
             </div>
           </div>
         </div>
-      ) : null}
+      )}
       {dialogState && (
         <div className="toast">
-          <Alert severity="success">
-            <AlertTitle>Success</AlertTitle>
-            <strong>該当のTODOは削除されました。</strong>
-          </Alert>
+          <Alert severity="success">該当のTODOを削除しました。</Alert>
         </div>
       )}
     </>
