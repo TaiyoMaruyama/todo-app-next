@@ -6,14 +6,14 @@ import { useRouter } from "next/router";
 const SignInPage = () => {
   const router = useRouter();
   const [mail, setMail] = useState("");
-  const [password, setPaddword] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleChangeMail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setMail(e.target.value);
   };
 
   const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPaddword(e.target.value);
+    setPassword(e.target.value);
   };
 
   const handleLogin = () => {

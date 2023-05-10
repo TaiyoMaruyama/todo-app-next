@@ -2,8 +2,8 @@ import { useState } from "react";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { useRouter } from "next/router";
-import { BackButton } from "./commomParts/BackButton";
-import { CreateButton } from "./commomParts/createButton";
+import { BackButton } from "./commonParts/BackButton";
+import { CreateButton } from "./commonParts/createButton";
 
 export const Create = () => {
   const router = useRouter();
@@ -11,7 +11,7 @@ export const Create = () => {
   const [newDetail, setNewDetail] = useState("");
   const [newPriority, setNewPriority] = useState("");
 
-  const newtitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const newTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewTitle(e.target.value);
   };
   const newDetailChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -40,7 +40,7 @@ export const Create = () => {
         type="text"
         className="create-input"
         value={newTitle}
-        onChange={newtitleChange}
+        onChange={newTitleChange}
       />
       <textarea
         cols={30}
